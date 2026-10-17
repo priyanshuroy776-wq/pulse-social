@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10131c">
+<title>Pulse — Your people, your world</title>
+<style>
+:root{--bg:#0d1018;--panel:#151a26;--panel2:#1c2332;--text:#f4f6fb;--muted:#98a2b6;--line:#2a3142;--accent:#8b7cff;--accent2:#35d6b0;--danger:#ff6687}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,textarea{font:inherit}button{cursor:pointer;color:inherit;border:0}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app{min-height:100vh;max-width:1180px;margin:auto;display:grid;grid-template-columns:230px minmax(0,620px) 270px;gap:24px;padding:0 22px}
+.sidebar{position:sticky;top:0;height:100vh;padding:28px 0;display:flex;flex-direction:column;border-right:1px solid var(--line);padding-right:18px}
+.brand{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:850;letter-spacing:-.8px;margin:0 0 30px 4px}.logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4edac0);display:grid;place-items:center;color:#10131c;font-weight:950}
+.nav{display:grid;gap:8px}.nav button{display:flex;gap:14px;align-items:center;text-align:left;padding:13px 14px;border-radius:14px;background:transparent;color:var(--muted);font-weight:650}.nav button.active,.nav button:hover{background:var(--panel2);color:var(--text)}.nav .ico{width:22px;text-align:center;font-size:19px}
+.newpost{margin-top:22px;background:linear-gradient(120deg,var(--accent),#6b9dff);padding:13px;border-radius:14px;font-weight:800;color:#0d1018}
+.sidebar-bottom{margin-top:auto;color:var(--muted);font-size:12px;padding:16px 8px}
+main{padding:24px 0 90px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.topbar h1{font-size:24px;margin:0;letter-spacing:-.6px}.iconbtn{background:var(--panel);border:1px solid var(--line);border-radius:12px;width:42px;height:42px;font-size:18px}
+.searchbar{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:11px 14px;margin-bottom:20px}.searchbar input{width:100%;background:transparent;border:0;color:var(--text);outline:0}
+.stories{display:flex;gap:14px;overflow-x:auto;padding:3px 0 18px;margin-bottom:12px}.story{flex:0 0 66px;text-align:center;background:none;padding:0}.story-ring{width:60px;height:60px;margin:auto;border-radius:50%;padding:3px;background:linear-gradient(135deg,#8b7cff,#35d6b0);}.story-ring span{display:grid;place-items:center;width:100%;height:100%;border:3px solid var(--bg);border-radius:50%;font-size:23px;background:var(--panel2)}.story small{display:block;color:var(--muted);font-size:11px;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.composer{display:flex;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);padding:14px;border-radius:18px;margin-bottom:18px}.avatar{flex:0 0 42px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:21px;background:linear-gradient(135deg,#ffe0a6,#ff9bba);color:#23202b}.composer button{flex:1;text-align:left;color:var(--muted);background:var(--panel2);border-radius:13px;padding:12px 14px}.composer .plus{flex:0 0 42px;text-align:center;padding:10px;background:var(--accent);color:#10131c;font-weight:900}
+.feed{display:grid;gap:18px}.post{border:1px solid var(--line);background:var(--panel);border-radius:20px;overflow:hidden}.post-head{display:flex;align-items:center;gap:10px;padding:15px 16px}.post-head .meta{flex:1;min-width:0}.post-head strong{display:block;font-size:14px}.post-head small{color:var(--muted);font-size:12px}.more{background:transparent;color:var(--muted);font-size:21px;padding:0 4px}.post-art{min-height:240px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;position:relative;overflow:hidden}.post-art .arttext{position:relative;z-index:1;max-width:360px}.post-art .big{font-size:clamp(26px,5vw,46px);font-weight:900;line-height:1.02;letter-spacing:-1.7px}.post-art .sub{margin-top:12px;opacity:.85}.art-one{background:radial-gradient(circle at 20% 20%,#f9d8a2,transparent 33%),linear-gradient(135deg,#fa8e77,#9d74e8 70%,#202a50)}.art-two{background:radial-gradient(circle at 70% 25%,#8df0d5,transparent 25%),linear-gradient(135deg,#102b3f,#2f857b 60%,#d4a5e6)}.art-three{background:radial-gradient(circle at 50% 20%,#f9c7d8,transparent 25%),linear-gradient(135deg,#252544,#6355a8,#ffad91)}.art-four{background:linear-gradient(145deg,#f7ce73,#f08c62 50%,#bb5c80);color:#271b30}.post-body{padding:14px 16px 16px}.post-actions{display:flex;align-items:center;gap:16px;margin-bottom:10px}.action{background:none;padding:2px 0;color:var(--muted);font-size:20px}.action.liked{color:var(--danger)}.action span{font-size:13px;margin-left:5px;color:var(--text)}.save{margin-left:auto}.caption{font-size:14px;margin:0 0 8px}.caption b{margin-right:6px}.comments-link{background:none;color:var(--muted);padding:0;font-size:13px}.rightbar{padding:30px 0;position:sticky;top:0;height:100vh}.welcome{border:1px solid var(--line);border-radius:18px;padding:18px;background:linear-gradient(145deg,#1b2032,#141924);margin-bottom:18px}.welcome h3{margin:0 0 6px;font-size:17px}.welcome p{margin:0;color:var(--muted);font-size:13px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:22px 0 14px;font-size:13px;color:var(--muted);font-weight:750}.section-title button{background:none;color:var(--accent);font-size:12px}.person{display:flex;align-items:center;gap:10px;margin:14px 0}.person .personinfo{flex:1;min-width:0}.person strong{font-size:13px;display:block}.person small{color:var(--muted);font-size:11px}.follow{background:var(--panel2);color:var(--accent2);border-radius:9px;padding:7px 9px;font-size:12px;font-weight:800}.follow.following{color:var(--muted)}.trend{padding:12px 0;border-bottom:1px solid var(--line)}.trend small{color:var(--muted);font-size:11px}.trend strong{display:block;margin:3px 0;font-size:14px}.trend span{font-size:12px;color:var(--muted)}.mobile-nav{display:none}.empty{padding:36px 18px;text-align:center;background:var(--panel);border:1px solid var(--line);border-radius:18px;color:var(--muted)}
+.overlay{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.overlay.open{display:flex}.modal{width:min(500px,100%);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 20px 80px #0008}.modal h2{margin:0 0 6px}.modal p{color:var(--muted);font-size:13px;margin:0 0 18px}.field{display:grid;gap:7px;margin:13px 0}.field label{font-size:12px;color:var(--muted);font-weight:700}.field input,.field textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px}.field textarea{resize:vertical;min-height:85px}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.secondary,.primary{border-radius:12px;padding:11px 15px;font-weight:800}.secondary{background:var(--panel2)}.primary{background:var(--accent);color:#11131c}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#f4f6fb;color:#11131c;padding:11px 16px;border-radius:12px;font-size:13px;font-weight:750;display:none;z-index:20;box-shadow:0 8px 30px #0005}.toast.show{display:block}
+@media(max-width:1000px){.app{grid-template-columns:190px minmax(0,620px);gap:20px}.rightbar{display:none}.sidebar{padding-right:12px}}
+@media(max-width:680px){.app{display:block;padding:0 13px}.sidebar{display:none}main{padding:18px 0 92px}.topbar h1{font-size:22px}.mobile-nav{display:flex;position:fixed;z-index:5;bottom:0;left:0;right:0;justify-content:space-around;padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:#111520f5;border-top:1px solid var(--line);backdrop-filter:blur(15px)}.mobile-nav button{background:transparent;color:var(--muted);font-size:20px;padding:6px 10px;border-radius:10px}.mobile-nav button.active{color:var(--accent)}.post-art{min-height:215px}.story-ring{width:56px;height:56px}.stories{gap:12px}.composer{padding:11px}.avatar{width:38px;height:38px;flex-basis:38px}.post{border-radius:17px}.topbar{margin-bottom:15px}}
+</style>
+
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#090b12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">P</span> pulse</div>
+    <nav class="nav" id="sideNav">
+      <button class="active" data-page="Home"><span class="ico">⌂</span>Home</button>
+      <button data-page="Explore"><span class="ico">⌕</span>Explore</button>
+      <button data-page="Messages"><span class="ico">✉</span>Messages</button>
+      <button data-page="Notifications"><span class="ico">♡</span>Notifications</button>
+      <button data-page="Profile"><span class="ico">◉</span>Profile</button>
+    </nav>
+    <button class="newpost" id="newPostSide">＋ Create post</button>
+    <div class="sidebar-bottom">A little more connected.<br>Pulse prototype · Built to grow.</div>
+  </aside>
+  <main>
+    <div class="topbar"><h1 id="pageTitle">Your feed</h1><button class="iconbtn" id="topCreate" aria-label="Create post">＋</button></div>
+    <div class="searchbar"><span>⌕</span><input id="search" placeholder="Search people or captions..." aria-label="Search people or captions"></div>
+    <section id="homeExtras">
+      <div class="stories" id="stories">
+        <button class="story" data-story="Your story"><div class="story-ring"><span>＋</span></div><small>Your story</small></button>
+        <button class="story" data-story="Maya"><div class="story-ring"><span>🌻</span></div><small>maya.jpg</small></button>
+        <button class="story" data-story="Arjun"><div class="story-ring"><span>🏔️</span></div><small>arjun.trails</small></button>
+        <button class="story" data-story="Zoya"><div class="story-ring"><span>🎧</span></div><small>zoya.wav</small></button>
+        <button class="story" data-story="Dev"><div class="story-ring"><span>☕</span></div><small>devcreates</small></button>
+        <button class="story" data-story="Nia"><div class="story-ring"><span>🌊</span></div><small>nia.outside</small></button>
+      </div>
+      <div class="composer"><div class="avatar">🧑🏽‍💻</div><button id="composerOpen">Share something with your people...</button><button class="plus" id="composerPlus" aria-label="Create post">＋</button></div>
+    </section>
+    <section class="feed" id="feed" aria-live="polite"></section>
+  </main>
+  <aside class="rightbar">
+    <div class="welcome"><h3>Welcome to your corner ✨</h3><p>Find your people, share what you love, and make this space yours.</p></div>
+    <div class="section-title">PEOPLE TO FOLLOW <button id="refreshPeople">Refresh</button></div>
+    <div id="people"></div>
+    <div class="section-title">TRENDING IN PULSE</div>
+    <div class="trend"><small>COMMUNITY · 2.4k posts</small><strong>#SmallCreatorEnergy</strong><span>Celebrate the people making things.</span></div>
+    <div class="trend"><small>PHOTOGRAPHY · 1.8k posts</small><strong>#EverydayFrames</strong><span>Little moments, big stories.</span></div>
+    <div class="trend"><small>STUDENT LIFE · 960 posts</small><strong>#StudyWithMe</strong><span>Find your focus crew.</span></div>
+  </aside>
+</div>
+<nav class="mobile-nav" id="mobileNav" aria-label="Main navigation">
+  <button class="active" data-page="Home" aria-label="Home">⌂</button><button data-page="Explore" aria-label="Explore">⌕</button><button id="mobileCreate" aria-label="Create post">⊕</button><button data-page="Notifications" aria-label="Notifications">♡</button><button data-page="Profile" aria-label="Profile">◉</button>
+</nav>
+<div class="overlay" id="postModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modal"><h2 id="modalTitle">Create a post</h2><p>Share a thought, a little win, or something you made.</p>
+  <form id="postForm"><div class="field"><label for="authorInput">Display name</label><input id="authorInput" maxlength="32" value="Priyanshu" required></div>
+  <div class="field"><label for="captionInput">Caption</label><textarea id="captionInput" maxlength="500" placeholder="What's happening in your world?" required></textarea></div>
+  <div class="field"><label for="themeInput">Post style</label><select id="themeInput" style="background:var(--bg);border:1px solid var(--line);border-radius:12px;color:var(--text);padding:12px"><option value="art-four">Sunset</option><option value="art-one">Dreamscape</option><option value="art-two">Ocean</option><option value="art-three">After hours</option></select></div>
+  <div class="modal-actions"><button type="button" class="secondary" id="cancelPost">Cancel</button><button class="primary" type="submit">Share post</button></div></form>
+ </div>
+</div>
+<div class="overlay" id="commentModal" role="dialog" aria-modal="true" aria-labelledby="commentTitle">
+ <div class="modal"><h2 id="commentTitle">Comments</h2><div id="commentList" style="max-height:220px;overflow:auto;margin:12px 0"></div>
+  <form id="commentForm"><div class="field"><label for="commentInput">Add a comment</label><input id="commentInput" maxlength="240" placeholder="Write something kind..." required></div><div class="modal-actions"><button type="button" class="secondary" id="cancelComment">Close</button><button class="primary" type="submit">Comment</button></div></form>
+ </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const seedPosts=[
+{id:1,user:"maya.jpg",emoji:"🌻",time:"12 min ago",caption:"A reminder that the little things are usually the big things. Took the long way home today and I'm glad I did. 🌼",style:"art-one",title:"TAKE THE\nSCENIC ROUTE",sub:"you have time to notice",likes:128,liked:false,comments:[{user:"arjun.trails",text:"This is the energy I need."},{user:"zoya.wav",text:"So lovely 🌻"}]},
+{id:2,user:"arjun.trails",emoji:"🏔️",time:"38 min ago",caption:"Weekend plan: fresh air, no rush, and absolutely no checking emails. Where would you go if you had a free day?",style:"art-two",title:"FIND YOUR\nOWN PACE",sub:"outside is calling",likes:86,liked:false,comments:[{user:"devcreates",text:"Somewhere near the sea!"}]},
+{id:3,user:"zoya.wav",emoji:"🎧",time:"1 hr ago",caption:"Made a playlist for the walk home. Every city has its own soundtrack if you listen closely 🎶",style:"art-three",title:"LIFE HAS A\nSOUNDTRACK",sub:"press play on today",likes:214,liked:false,comments:[]},
+{id:4,user:"devcreates",emoji:"☕",time:"2 hr ago",caption:"First version shipped! It's not perfect, but it's real. If you're building something too, keep going. 🚀",style:"art-four",title:"MAKE IT\nREAL",sub:"start small. keep going.",likes:73,liked:false,comments:[{user:"maya.jpg",text:"Proud of you!!"}]}
+];
+const peopleSeed=[{name:"Nia Kapoor",handle:"nia.outside",emoji:"🌊",following:false},{name:"Kabir Singh",handle:"kabir.frames",emoji:"📷",following:false},{name:"Aanya Verma",handle:"aanya.draws",emoji:"🎨",following:false},{name:"Rohan Das",handle:"rohan.builds",emoji:"🧩",following:false}];
+let posts=load("pulse_posts",seedPosts),people=load("pulse_people",peopleSeed),activePage="Home",commentPostId=null;
+function load(k,fallback){try{const v=localStorage.getItem(k);return v?JSON.parse(v):JSON.parse(JSON.stringify(fallback))}catch{return JSON.parse(JSON.stringify(fallback))}}
+function save(){try{localStorage.setItem("pulse_posts",JSON.stringify(posts));localStorage.setItem("pulse_people",JSON.stringify(people))}catch{}}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function initials(n){return n.split(/[ .]/).filter(Boolean).slice(0,2).map(x=>x[0]).join("").toUpperCase()}
+function avatar(emoji){return `<div class="avatar">${emoji||"🙂"}</div>`}
+function renderPosts(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ let list=posts.filter(p=>(p.caption+" "+p.user).toLowerCase().includes(q));
+ if(activePage==="Profile") list=posts.filter(p=>p.user==="Priyanshu"&&(p.caption+" "+p.user).toLowerCase().includes(q));
+ if(activePage==="Notifications"){document.getElementById("feed").innerHTML=`<div class="empty"><div style="font-size:32px;margin-bottom:10px">♡</div><strong>You're all caught up</strong><br><span style="font-size:13px">When people interact with your posts, you'll see it here.</span></div>`;return}
+ if(activePage==="Messages"){document.getElementById("feed").innerHTML=`<div class="empty"><div style="font-size:32px;margin-bottom:10px">✉</div><strong>Your conversations start here</strong><br><span style="font-size:13px">Messaging is planned for a future version of Pulse.</span></div>`;return}
+ if(!list.length){document.getElementById("feed").innerHTML=`<div class="empty">No posts found. Try another search or create the first post.</div>`;return}
+ document.getElementById("feed").innerHTML=list.map(p=>`<article class="post" data-id="${p.id}">
+ <div class="post-head">${avatar(p.emoji)}<div class="meta"><strong>${esc(p.user)}</strong><small>${esc(p.time)} · 🌐 Public</small></div><button class="more" aria-label="More options" data-action="report">···</button></div>
+ <div class="post-art ${p.style}"><div class="arttext"><div class="big">${esc(p.title||"A MOMENT\nTO SHARE").replace(/\n/g,"<br>")}</div><div class="sub">${esc(p.sub||"your world, your way")}</div></div></div>
+ <div class="post-body"><div class="post-actions"><button class="action ${p.liked?"liked":""}" data-action="like" aria-label="Like post">${p.liked?"♥":"♡"}<span>${p.likes}</span></button><button class="action" data-action="comment" aria-label="Comments">♧<span>${p.comments.length}</span></button><button class="action" data-action="share" aria-label="Share post">↗</button><button class="action save" data-action="save" aria-label="Save post">♧</button></div>
+ <p class="caption"><b>${esc(p.user)}</b>${esc(p.caption)}</p><button class="comments-link" data-action="comment">View all ${p.comments.length} comments</button></div></article>`).join("");
+}
+function renderPeople(){document.getElementById("people").innerHTML=people.map((p,i)=>`<div class="person">${avatar(p.emoji)}<div class="personinfo"><strong>${esc(p.name)}</strong><small>@${esc(p.handle)}</small></div><button class="follow ${p.following?"following":""}" data-follow="${i}">${p.following?"Following":"Follow"}</button></div>`).join("")}
+function updateNav(){document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===activePage));const titles={Home:"Your feed",Explore:"Explore Pulse",Messages:"Messages",Notifications:"Notifications",Profile:"Your profile"};document.getElementById("pageTitle").textContent=titles[activePage]||"Your feed";document.getElementById("homeExtras").style.display=activePage==="Home"?"block":"none";renderPosts()}
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove("show"),2400)}
+function openPost(){document.getElementById("postModal").classList.add("open");setTimeout(()=>document.getElementById("captionInput").focus(),100)}
+function closeModal(id){document.getElementById(id).classList.remove("open")}
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>{activePage=b.dataset.page;updateNav()}));
+document.getElementById("search").addEventListener("input",renderPosts);
+["topCreate","newPostSide","composerOpen","composerPlus","mobileCreate"].forEach(id=>document.getElementById(id).addEventListener("click",openPost));
+document.getElementById("cancelPost").addEventListener("click",()=>closeModal("postModal"));
+document.getElementById("postModal").addEventListener("click",e=>{if(e.target.id==="postModal")closeModal("postModal")});
+document.getElementById("postForm").addEventListener("submit",e=>{e.preventDefault();const author=document.getElementById("authorInput").value.trim()||"New member",caption=document.getElementById("captionInput").value.trim();if(!caption)return;const styles=document.getElementById("themeInput").value;const titles={"art-four":["MAKE IT\nREAL","start small. keep going."],"art-one":["TAKE THE\nSCENIC ROUTE","you have time to notice"],"art-two":["FIND YOUR\nOWN PACE","outside is calling"],"art-three":["LIFE HAS A\nSOUNDTRACK","press play on today"]};posts.unshift({id:Date.now(),user:author,emoji:"🧑🏽‍💻",time:"just now",caption,style:styles,title:titles[styles][0],sub:titles[styles][1],likes:0,liked:false,comments:[]});save();document.getElementById("captionInput").value="";closeModal("postModal");activePage="Home";updateNav();showToast("Your post is live in this demo ✨")});
+document.getElementById("feed").addEventListener("click",e=>{const b=e.target.closest("[data-action]");if(!b)return;const card=b.closest(".post"),p=posts.find(x=>x.id===Number(card.dataset.id));if(!p)return;const a=b.dataset.action;if(a==="like"){p.liked=!p.liked;p.likes+=p.liked?1:-1;save();renderPosts()}else if(a==="comment"){commentPostId=p.id;document.getElementById("commentTitle").textContent="Comments · "+p.comments.length;renderComments(p);document.getElementById("commentModal").classList.add("open")}else if(a==="share"){if(navigator.share){navigator.share({title:"Pulse post",text:p.caption}).catch(()=>{})}else if(navigator.clipboard){navigator.clipboard.writeText(p.caption).then(()=>showToast("Caption copied to clipboard")).catch(()=>showToast("Share is ready to add in a future version"))}else showToast("Share is planned for the next version")}else if(a==="save")showToast("Saved feature is coming soon");else if(a==="report")showToast("Report tools need a connected backend in a live app")});
+function renderComments(p){const el=document.getElementById("commentList");el.innerHTML=p.comments.length?p.comments.map(c=>`<div style="padding:10px 0;border-bottom:1px solid var(--line);font-size:13px"><b>${esc(c.user)}</b> ${esc(c.text)}</div>`).join(""):`<p style="color:var(--muted);font-size:13px">No comments yet. Be the first to say something kind.</p>`}
+document.getElementById("commentForm").addEventListener("submit",e=>{e.preventDefault();const input=document.getElementById("commentInput"),txt=input.value.trim(),p=posts.find(x=>x.id===commentPostId);if(!txt||!p)return;p.comments.push({user:"Priyanshu",text:txt});input.value="";save();renderComments(p);renderPosts();showToast("Comment added")});
+document.getElementById("cancelComment").addEventListener("click",()=>closeModal("commentModal"));
+document.getElementById("commentModal").addEventListener("click",e=>{if(e.target.id==="commentModal")closeModal("commentModal")});
+document.getElementById("people").addEventListener("click",e=>{const b=e.target.closest("[data-follow]");if(!b)return;const p=people[Number(b.dataset.follow)];p.following=!p.following;save();renderPeople();showToast(p.following?"You're now following "+p.name:"Unfollowed "+p.name)});
+document.getElementById("refreshPeople").addEventListener("click",()=>showToast("More people suggestions coming soon"));
+document.getElementById("stories").addEventListener("click",e=>{const b=e.target.closest("[data-story]");if(!b)return;showToast(b.dataset.story==="Your story"?"Story creation is planned for a future version":b.dataset.story+"'s story is a sample preview")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal("postModal");closeModal("commentModal")}});
+renderPeople();updateNav();
+</script>
+
+<script>
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(console.error));
+}
+</script>
+
+</body>
+</html>
