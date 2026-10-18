@@ -142,6 +142,95 @@ if ("serviceWorker" in navigator && (location.protocol === "https:" || location.
   window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(console.error));
 }
 </script>
+<!-- Pulse Google Sign-In -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
+<style>
+#pulseAuth {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 99999;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 22px;
+  background: #8b7cff;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px #0005;
+}
+#pulseAuthStatus {
+  position: fixed;
+  top: 58px;
+  right: 12px;
+  z-index: 99999;
+  max-width: 250px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: #151a26;
+  color: white;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+</style>
+
+<button id="pulseAuth">Continue with Google</button>
+<div id="pulseAuthStatus">Browsing Pulse as a guest</div>
+
+<script>
+const pulseFirebaseConfig = {
+  apiKey: "PASTE_YOUR_API_KEY_HERE",
+  authDomain: "pulse-78f6a.firebaseapp.com",
+  projectId: "pulse-78f6a",
+  storageBucket: "pulse-78f6a.firebasestorage.app",
+  messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID_HERE",
+  appId: "PASTE_YOUR_APP_ID_HERE"
+};
+
+firebase.initializeApp(pulseFirebaseConfig);
+
+const pulseAuth = firebase.auth();
+const pulseProvider = new firebase.auth.GoogleAuthProvider();
+
+const pulseAuthButton = document.getElementById("pulseAuth");
+const pulseAuthStatus = document.getElementById("pulseAuthStatus");
+
+pulseAuthButton.addEventListener("click", async () => {
+  try {
+    await pulseAuth.signInWithRedirect(pulseProvider);
+  } catch (error) {
+    alert("Google sign-in failed: " + error.message);
+  }
+});
+
+pulseAuth.getRedirectResult().catch(error => {
+  alert("Sign-in error: " + error.message);
+});
+
+pulseAuth.onAuthStateChanged(user => {
+  if (user) {
+    pulseAuthButton.textContent = "Sign out";
+    pulseAuthStatus.textContent =
+      "Signed in as " + (user.displayName || user.email);
+
+    pulseAuthButton.onclick = async () => {
+      await pulseAuth.signOut();
+    };
+  } else {
+    pulseAuthButton.textContent = "Continue with Google";
+    pulseAuthStatus.textContent = "Browsing Pulse as a guest";
+
+    pulseAuthButton.onclick = async () => {
+      try {
+        await pulseAuth.signInWithRedirect(pulseProvider);
+      } catch (error) {
+        alert("Google sign-in failed: " + error.message);
+      }
+    };
+  }
+});
+</script>
 </body>
 </html>
