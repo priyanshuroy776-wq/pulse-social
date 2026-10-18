@@ -211,11 +211,23 @@ pulseAuth.getRedirectResult().catch(error => {
   alert("Sign-in error: " + error.message);
 });
 
-pulseAuth.onAuthStateChanged(user => {
+  pulseAuth.onAuthStateChanged(user => {
   if (user) {
     pulseAuthButton.textContent = "Sign out";
-    pulseAuthStatus.textContent =
-      "Signed in as " + (user.displayName || user.email);
+
+    pulseAuthStatus.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px">
+        <img
+          src="${user.photoURL || ''}"
+          alt="Profile"
+          style="width:40px;height:40px;border-radius:50%"
+        >
+        <div>
+          <strong>${user.displayName || "Pulse User"}</strong><br>
+          <small>${user.email || ""}</small>
+        </div>
+      </div>
+    `;
 
     pulseAuthButton.onclick = async () => {
       await pulseAuth.signOut();
