@@ -1,6 +1,10 @@
 <!doctype html>
 <html lang="en">
-<head>
+<head> 
+<link rel="manifest" href="/pulse-social/manifest.json">
+<link rel="icon" href="/pulse-social/icon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#7867ff">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#10131c">
@@ -361,6 +365,17 @@ if ("serviceWorker" in navigator && (location.protocol === "https:" || location.
 
   showForm("choices");
 })();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register(
+      "/pulse-social/service-worker.js"
+    ).catch(error => console.error(
+      "Pulse service worker failed:", error
+    ));
+  });
+}
 </script>
 </body>
 </html>
