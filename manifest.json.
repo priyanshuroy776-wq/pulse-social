@@ -1,0 +1,20 @@
+
+{
+  "id": "/pulse-social/",
+  "name": "Pulse Social",
+  "short_name": "Pulse",
+  "description": "Connect and share on Pulse",
+  "start_url": "/pulse-social/",
+  "scope": "/pulse-social/",
+  "display": "standalone",
+  "background_color": "#101321",
+  "theme_color": "#7867ff",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
